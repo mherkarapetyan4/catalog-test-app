@@ -1,0 +1,5 @@
+export const actionKeys = {
+  START_FETCHING: "START_FETCHING",
+  END_FETCHING: "END_FETCHING",
+  GET_PRODUCTS: "GET_PRODUCTS",
+};
