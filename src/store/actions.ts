@@ -1,3 +1,4 @@
+import { RootState } from './reducers/index';
 import { actionKeys } from "./../constants/actionKeys";
 export const startFetching = () => ({
   type: actionKeys.START_FETCHING,
@@ -13,13 +14,53 @@ export const getProductsFullFilled = (payload: Response) => ({
 });
 
 export const getProducts = () => {
-  return (dispatch: (arg0: { type: string; payload?: Response }) => void) => {
+  return (
+    dispatch: (arg0: { type: string; payload?: Response }) => void, 
+  ) => {
     dispatch(startFetching());
-    fetch("https://fakestoreapi.com/products")
+    fetch(`https://fakestoreapi.com/products`)
       .then((res) => res.json())
       .then((json) => {
-        console.log(json, "Asd");
+        // const buffCount = getState().products.count + 5;
+
         dispatch(getProductsFullFilled(json));
+        // dispatch(setCount(new Response(buffCount.toString())));
+        dispatch(endFetching());
+      });
+  };
+};
+
+// const setCount = (payload: Response) => ({
+//   type: actionKeys.SET_COUNT,
+//   payload,
+// });
+
+export const getProductsByCategory = (category: string) => {
+  return (dispatch: (arg0: { type: string; payload?: Response }) => void ) => {
+    dispatch(startFetching());
+    fetch(`https://fakestoreapi.com/products/category/${category}`)
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch(getProductsFullFilled(json));
+
+        
+        dispatch(endFetching());
+      });
+  };
+};
+
+export const getAllCategoriesFullFilled = (payload: Response) => ({
+  type: actionKeys.GET_ALL_CATEGORIES,
+  payload,
+});
+
+export const getAllCategories = () => {
+  return (dispatch: (arg0: { type: string; payload?: Response }) => void) => {
+    dispatch(startFetching());
+    fetch("https://fakestoreapi.com/products/categories")
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch(getAllCategoriesFullFilled(json));
         dispatch(endFetching());
       });
   };
