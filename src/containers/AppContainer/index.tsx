@@ -1,4 +1,3 @@
-import ProductItem from "../../components/ProductItem";
 import { Routes } from "../../routes";
 
 const AppContainer = () => {
@@ -8,7 +7,6 @@ const AppContainer = () => {
   return (
     <div>
       {/* handle routing  */}
-      <ProductItem />
       <Routes />
     </div>
   );

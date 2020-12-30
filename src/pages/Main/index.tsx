@@ -1,12 +1,13 @@
 import useProduct from "../../hooks/useProduct"
 import styled from "styled-components";
 import { Spinner } from "../../components/UI/Spinner";
+import ProductItem from "../../components/ProductItem";
 const Main = () => {
-    const {isFetching} = useProduct()
+    const {isFetching, products} = useProduct()
     
     return <MainWrapper>
             {
-                isFetching ? <Spinner /> : <div>asdfdsa</div>
+                isFetching ? <Spinner /> : products.map((el,i) => <ProductItem key={i} product={el}/>)
             }
 
     </MainWrapper>
@@ -19,5 +20,7 @@ const MainWrapper = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center
+    // align-items: f;
+    width: 100%;
+    box-sizing: border-box
 `
