@@ -15,7 +15,7 @@ const useProduct = (isNext: boolean) => {
   const isFetching: boolean = useSelector(
     (state: RootState) => state.products.isFetching
   );
-  const data = useSelector((state: RootState) => state.products.data);
+  const data = useSelector((state: RootState) => state.products.data); 
   const categories = useSelector(
     (state: RootState) => state.products.categories
   );
@@ -24,12 +24,8 @@ const useProduct = (isNext: boolean) => {
     dispatch(getProducts());
     dispatch(getAllCategories());
   }, []);
-  useEffect(() => {
-    // if(data.length <= 10) {
-    //   return
-    // }
-    if (isNext) { 
-
+  useEffect(() => { 
+    if (isNext) {  
       setCount((c) => c + 5);
     }
   }, [isNext]);
@@ -110,7 +106,7 @@ const useProduct = (isNext: boolean) => {
     handlePriceChange,
     searchChange,
     searchValue,
-    handleCategoryChange,
+    handleCategoryChange, 
   };
 };
 

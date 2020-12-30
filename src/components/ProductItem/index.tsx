@@ -1,14 +1,17 @@
+import {Link} from "react-router-dom";
 import styled from "styled-components";
 const ProductItem = (props: { product: ProductType }) => {
-  const { title, price, description, image } = props.product;
+  const { title, price, description, image, id } = props.product;
   return (
-    <CardWrapper>
-      <Title>{title}</Title>
-      <ImageWrapper>
-        <img src={image} />
-      </ImageWrapper>
-      <Description> {description}</Description> <h4>${price}</h4>
-    </CardWrapper>
+    <Link to={`/product/${id}`}>
+      <CardWrapper>
+        <Title>{title}</Title>
+        <ImageWrapper>
+          <img src={image} />
+        </ImageWrapper>
+        <Description> {description}</Description> <h4>${price}</h4>
+      </CardWrapper>
+    </Link>
   );
 };
 

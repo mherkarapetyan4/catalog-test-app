@@ -5,6 +5,7 @@ const initialState: ProductState = {
   categories: [],
   isFetching: false,
   count: 10,
+  detail: null
 };
 
 export default function createReducer(state = initialState, action: { type: String, payload?: Array<Object> | Object | number}) {
@@ -19,21 +20,27 @@ export default function createReducer(state = initialState, action: { type: Stri
         ...state,
         isFetching: false,
       };
-      case actionKeys.SET_COUNT: 
+    case actionKeys.SET_COUNT:
       return {
         ...state,
-        count: typeof action.payload === 'undefined' ? state.count : +action.payload
-      }
+        count:
+          typeof action.payload === "undefined" ? state.count : +action.payload,
+      };
     case actionKeys.GET_PRODUCTS:
       return {
         ...state,
         data: action.payload,
       };
-      case actionKeys.GET_ALL_CATEGORIES: 
-        return {
-          ...state,
-          categories: action.payload
-        }
+    case actionKeys.GET_SINGLE_PRODUCT:
+      return {
+        ...state,
+        detail: action.payload,
+      };
+    case actionKeys.GET_ALL_CATEGORIES:
+      return {
+        ...state,
+        categories: action.payload,
+      };
     default:
       return state;
   }
